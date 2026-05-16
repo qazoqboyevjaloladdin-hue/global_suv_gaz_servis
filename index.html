@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Global Suv Gaz Servis</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1565C0;--blue-light:#1E88E5;--green:#2E7D32;--orange:#E65100;--gold:#F9A825;--bg:#f4f7fb;--text:#1a2340;--muted:#5a6a8a;--shadow:0 4px 32px rgba(21,101,192,.10);--r:18px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* NAV */
+nav{background:#fff;box-shadow:0 2px 16px rgba(21,101,192,.08);position:sticky;top:0;z-index:200;padding:0 20px;}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-circle{width:52px;height:52px;border-radius:50%;overflow:hidden;border:2px solid var(--blue-light);background:#e8f0fe;flex-shrink:0;}
+.logo-circle img{width:100%;height:100%;object-fit:cover;display:block;}
+.logo-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:19px;color:var(--blue);letter-spacing:1px;}
+.logo-sub{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;}
+.nav-links{display:flex;gap:20px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--muted);font-weight:600;font-size:13px;transition:color .2s;}
+.nav-links a:hover{color:var(--blue);}
+.lang-row{display:flex;gap:4px;}
+.lang-btn{font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;width:46px;height:38px;border-radius:8px;border:2px solid #d0ddf5;background:#fff;color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:all .15s;user-select:none;-webkit-user-select:none;display:inline-flex;align-items:center;justify-content:center;}
+.lang-btn.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+.hamburger{display:none;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:48px;height:48px;border:none;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;padding:0;flex-shrink:0;}
+.hamburger span{display:block;width:24px;height:2.5px;background:var(--blue);border-radius:2px;}
+.mobile-menu{display:none;flex-direction:column;background:#fff;border-top:1px solid #e8eef7;padding:16px 20px 22px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{text-decoration:none;color:var(--text);font-weight:600;font-size:15px;padding:12px 0;border-bottom:1px solid #f0f4fa;display:block;}
+.mob-lang-row{display:flex;gap:8px;padding-top:16px;}
+.mob-lang-row .lang-btn{flex:1;height:48px;font-size:14px;border-radius:10px;width:auto;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0d3b8e 0%,#1565C0 50%,#1976D2 100%);color:#fff;padding:72px 20px 56px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.06),transparent 60%);pointer-events:none;}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:6px 20px;border-radius:30px;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;font-weight:600;}
+.hero-logo{width:120px;height:120px;border-radius:50%;border:4px solid rgba(255,255,255,.4);overflow:hidden;margin:0 auto 22px;box-shadow:0 8px 32px rgba(0,0,0,.3);background:rgba(255,255,255,.1);}
+.hero-logo img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(28px,6vw,56px);letter-spacing:2px;line-height:1.1;margin-bottom:10px;}
+.hero-sub{font-size:clamp(13px,2.5vw,18px);opacity:.8;margin-bottom:28px;font-weight:600;letter-spacing:2px;text-transform:uppercase;}
+.hero-addr{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border-radius:30px;padding:8px 22px;font-size:13px;font-weight:600;margin-bottom:32px;}
+.hero-line{width:160px;height:4px;margin:0 auto;border-radius:2px;background:linear-gradient(90deg,#2E7D32,#F9A825,#E65100);}
+
+/* SECTIONS */
+section{padding:60px 20px;}
+.container{max-width:1200px;margin:0 auto;}
+.sec-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(20px,4vw,34px);color:var(--blue);text-align:center;margin-bottom:10px;}
+.sec-line{width:60px;height:4px;background:linear-gradient(90deg,var(--green),var(--orange));border-radius:2px;margin:0 auto 38px;}
+
+/* SERVICES */
+.services{background:#fff;}
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;}
+.srv-card{background:var(--bg);border-radius:var(--r);padding:28px 22px;border-left:5px solid var(--blue-light);box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;}
+.srv-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(21,101,192,.16);}
+.srv-icon{width:52px;height:52px;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--blue-light));display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.srv-icon svg{width:26px;height:26px;fill:#fff;}
+.srv-card h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;margin-bottom:9px;}
+.srv-card p{font-size:13px;color:var(--muted);line-height:1.65;}
+
+/* CERTIFICATES */
+.cert-sec{background:var(--bg);}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;}
+.cert-card{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;transition:transform .2s;}
+.cert-card:hover{transform:translateY(-4px);}
+.cert-img-wrap{position:relative;background:#f0f4fb;}
+.cert-img-wrap img{width:100%;height:auto;object-fit:contain;display:block;}
+.cert-img-wrap .cert-err{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:180px;gap:8px;background:linear-gradient(135deg,#e8f0fe,#fff8e1);padding:20px;text-align:center;font-size:13px;color:var(--blue);font-weight:600;}
+.cert-body{padding:16px 20px;}
+.cert-body h4{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;margin-bottom:4px;}
+.cert-body span{font-size:12px;color:var(--muted);}
+.cert-btn{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:var(--blue);color:#fff;text-decoration:none;padding:8px 16px;border-radius:8px;font-weight:700;font-size:12px;transition:background .2s;}
+.cert-btn:hover{background:#0d3b8e;}
+
+/* GALLERY */
+.gallery-sec{background:#fff;}
+.gallery-block{margin-bottom:48px;}
+.gallery-block:last-child{margin-bottom:0;}
+.gallery-subtitle{font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:var(--text);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.gallery-subtitle::before{content:'';display:block;width:5px;height:22px;background:linear-gradient(180deg,var(--blue),var(--blue-light));border-radius:3px;}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
+.photo-item{border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:#e8f0fe;cursor:pointer;position:relative;}
+.photo-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s;}
+.photo-item:hover img{transform:scale(1.06);}
+.photo-item .ph-overlay{position:absolute;inset:0;background:rgba(21,101,192,0);transition:background .3s;display:flex;align-items:center;justify-content:center;}
+.photo-item:hover .ph-overlay{background:rgba(21,101,192,.15);}
+
+/* VIDEO GRID */
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.video-item{border-radius:12px;overflow:hidden;background:#0d2050;position:relative;aspect-ratio:16/9;}
+.video-item a{display:flex;align-items:center;justify-content:center;width:100%;height:100%;text-decoration:none;position:relative;}
+.video-item img{width:100%;height:100%;object-fit:cover;display:block;opacity:.8;transition:opacity .3s;}
+.video-item:hover img{opacity:1;}
+.play-btn{position:absolute;width:54px;height:54px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:transform .2s;}
+.video-item:hover .play-btn{transform:scale(1.1);}
+.play-btn svg{width:22px;height:22px;fill:var(--blue);margin-left:4px;}
+.video-open-link{display:inline-flex;align-items:center;gap:6px;color:#fff;font-size:11px;font-weight:600;background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px;text-decoration:none;position:absolute;bottom:10px;left:50%;transform:translateX(-50%);white-space:nowrap;}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:1000;align-items:center;justify-content:center;padding:20px;}
+.lightbox.open{display:flex;}
+.lb-img{max-width:90vw;max-height:85vh;border-radius:10px;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,.5);}
+.lb-close{position:fixed;top:16px;right:20px;color:#fff;font-size:32px;cursor:pointer;background:none;border:none;line-height:1;z-index:1001;-webkit-tap-highlight-color:transparent;}
+.lb-prev,.lb-next{position:fixed;top:50%;transform:translateY(-50%);color:#fff;font-size:28px;cursor:pointer;background:rgba(255,255,255,.1);border:none;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;z-index:1001;}
+.lb-prev{left:12px;} .lb-next{right:12px;}
+
+/* CONTACT */
+.contact{background:var(--bg);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
+.c-items{display:flex;flex-direction:column;gap:16px;}
+.c-item{display:flex;align-items:flex-start;gap:14px;background:#fff;border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);}
+.c-icon{width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,var(--blue),var(--blue-light));display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.c-icon svg{width:20px;height:20px;fill:#fff;}
+.c-item h4{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:5px;font-weight:700;}
+.c-item a,.c-item p{font-weight:700;font-size:14px;color:var(--text);text-decoration:none;display:block;line-height:1.7;}
+.c-item a:hover{color:var(--blue);}
+.social-box{background:linear-gradient(135deg,#0d3b8e,#1565C0);border-radius:var(--r);padding:28px 24px;color:#fff;}
+.social-box h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;margin-bottom:18px;}
+.soc-links{display:flex;flex-direction:column;gap:11px;}
+.soc-link{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.1);border-radius:11px;padding:12px 16px;text-decoration:none;color:#fff;font-weight:600;font-size:13px;transition:background .2s;border:1px solid rgba(255,255,255,.12);}
+.soc-link:hover{background:rgba(255,255,255,.2);}
+.soc-link svg{width:20px;height:20px;flex-shrink:0;}
+.soc-hint{margin-left:auto;opacity:.6;font-size:11px;}
+
+footer{background:#0d2050;color:rgba(255,255,255,.6);text-align:center;padding:26px 20px;font-size:13px;}
+footer strong{color:#fff;}
+
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex!important;}
+  .desktop-lang{display:none!important;}
+  .hero{padding:52px 16px 44px;}
+  section{padding:44px 16px;}
+  .contact-grid{grid-template-columns:1fr;}
+  .photo-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;}
+  .video-grid{grid-template-columns:1fr;}
+  .cert-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <div class="logo-circle">
+        <img src="https://lh3.googleusercontent.com/d/12SeNadBpJf_cJai-5q0YaQy8xfMV600c" alt="Logo" onerror="this.parentNode.style.background='#1565C0'">
+      </div>
+      <div>
+        <div class="logo-title">GLOBAL</div>
+        <div class="logo-sub">Suv Gaz Servis</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services" data-key="nav_s">Xizmatlar</a></li>
+      <li><a href="#cert"     data-key="nav_c">Sertifikatlar</a></li>
+      <li><a href="#gallery"  data-key="nav_g">Galereya</a></li>
+      <li><a href="#contact"  data-key="nav_k">Aloqa</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="lang-row desktop-lang">
+        <button class="lang-btn active" data-lc="uz" type="button">UZB</button>
+        <button class="lang-btn"        data-lc="ru" type="button">RUS</button>
+        <button class="lang-btn"        data-lc="en" type="button">ENG</button>
+      </div>
+      <button class="hamburger" id="hbg" type="button" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mob">
+    <a href="#services" class="mnl" data-key="nav_s">Xizmatlar</a>
+    <a href="#cert"     class="mnl" data-key="nav_c">Sertifikatlar</a>
+    <a href="#gallery"  class="mnl" data-key="nav_g">Galereya</a>
+    <a href="#contact"  class="mnl" data-key="nav_k">Aloqa</a>
+    <div class="mob-lang-row">
+      <button class="lang-btn active" data-lc="uz" type="button">UZB</button>
+      <button class="lang-btn"        data-lc="ru" type="button">RUS</button>
+      <button class="lang-btn"        data-lc="en" type="button">ENG</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge" data-key="badge">OOO • Rasmiy tashkilot</div>
+  <div class="hero-logo">
+    <img src="https://lh3.googleusercontent.com/d/12SeNadBpJf_cJai-5q0YaQy8xfMV600c" alt="Global Logo" onerror="this.style.display='none'">
+  </div>
+  <h1>GLOBAL<br>SUV GAZ SERVIS</h1>
+  <div class="hero-sub" data-key="sub">Professionallar jamoasi</div>
+  <div class="hero-addr">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Xorazm vil., Urganch tumani, Oyoqbog' MFY
+  </div>
+  <div class="hero-line"></div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <h2 class="sec-title" data-key="s_title">Bizning Xizmatlar</h2>
+    <div class="sec-line"></div>
+    <div class="srv-grid">
+      <div class="srv-card">
+        <div class="srv-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14.93V15a1 1 0 00-2 0v1.93A8 8 0 014.07 13H6a1 1 0 000-2H4.07A8 8 0 0111 4.07V6a1 1 0 002 0V4.07A8 8 0 0119.93 11H18a1 1 0 000 2h1.93A8 8 0 0113 16.93z"/></svg></div>
+        <h3 data-key="s1h">Gorizontal burg'ulash</h3>
+        <p data-key="s1p">Yer osti kommunikatsiyalarini yo'l va inshootlarni buzmasdan o'tkazish uchun zamonaviy gorizontal yo'nalishli burg'ulash ishlari.</p>
+      </div>
+      <div class="srv-card">
+        <div class="srv-icon"><svg viewBox="0 0 24 24"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.81 6-4.72 7.28L13 17v5h5l-1.22-1.22C19.91 19.07 22 15.76 22 12c0-5.18-3.95-9.45-9-9.95zM11 2.05C5.95 2.55 2 6.82 2 12c0 3.76 2.09 7.07 5.22 8.78L6 22h5v-5l-2.28 2.28C7.81 18 6 15.21 6 12c0-4.08 3.05-7.44 7-7.93V2.05z"/></svg></div>
+        <h3 data-key="s2h">Yer usti va yer osti gaz liniyalari</h3>
+        <p data-key="s2p">Gaz tarmoqlarini loyihalash, montaj qilish va rekonstruksiya — yer usti va yer osti quvurlari bo'yicha to'liq xizmat.</p>
+      </div>
+      <div class="srv-card">
+        <div class="srv-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+        <h3 data-key="s3h">Suv ta'minot liniyalari montaji</h3>
+        <p data-key="s3p">Yer usti va yer osti suv quvurlari tizimlarini yangi o'rnatish hamda mavjud inshootlarni rekonstruksiya qilish.</p>
+      </div>
+      <div class="srv-card">
+        <div class="srv-icon"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
+        <h3 data-key="s4h">Rekonstruksiya va ta'mirlash</h3>
+        <p data-key="s4p">Mavjud gaz va suv tarmoqlarini zamonaviy standartlarga muvofiq rekonstruksiya, modernizatsiya va kapital ta'mirlash.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section class="cert-sec" id="cert">
+  <div class="container">
+    <h2 class="sec-title" data-key="c_title">Guvohnoma, Sertifikat &amp; Litsenziyalar</h2>
+    <div class="sec-line"></div>
+    <div class="cert-grid">
+
+      <!-- 1: Guvohnoma -->
+      <div class="cert-card">
+        <div class="cert-img-wrap">
+          <img src="https://lh3.googleusercontent.com/d/1jd5rntAoSpFvp7TV4d7VcWtvnFukGRBq"
+               alt="Guvohnoma"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="cert-err">📄 Rasm yuklanmadi</div>
+        </div>
+        <div class="cert-body">
+          <h4 data-key="cert1_name">Guvohnoma</h4>
+          <span data-key="cert1_sub">Davlat ro'yxatidan o'tish</span><br>
+          <a class="cert-btn" href="https://drive.google.com/file/d/1jd5rntAoSpFvp7TV4d7VcWtvnFukGRBq/view" target="_blank" rel="noopener" data-key="cert_btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+            To'liq ko'rish
+          </a>
+        </div>
+      </div>
+
+      <!-- 2: Litsenziya (avvalgi) -->
+      <div class="cert-card">
+        <div class="cert-img-wrap">
+          <img src="https://lh3.googleusercontent.com/d/1POsWqUfyHq2GtcUbEqmHomZG1j1F8Ot9"
+               alt="Litsenziya"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="cert-err">📄 Rasm yuklanmadi</div>
+        </div>
+        <div class="cert-body">
+          <h4 data-key="cert2_name">Litsenziya</h4>
+          <span data-key="cert2_sub">Gaz va suv tarmoqlari qurilishi</span><br>
+          <a class="cert-btn" href="https://drive.google.com/file/d/1POsWqUfyHq2GtcUbEqmHomZG1j1F8Ot9/view" target="_blank" rel="noopener" data-key="cert_btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+            To'liq ko'rish
+          </a>
+        </div>
+      </div>
+
+      <!-- 3: Ruxsatnoma 1 -->
+      <div class="cert-card">
+        <div class="cert-img-wrap">
+          <img src="https://lh3.googleusercontent.com/d/1sIB_wjIkWn79mBoIHjMGUKZgHLb4YP39"
+               alt="Ruxsatnoma"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="cert-err">📄 Rasm yuklanmadi</div>
+        </div>
+        <div class="cert-body">
+          <h4 data-key="cert3_name">Ruxsatnoma</h4>
+          <span data-key="cert3_sub">Maxsus ishlar uchun ruxsat</span><br>
+          <a class="cert-btn" href="https://drive.google.com/file/d/1sIB_wjIkWn79mBoIHjMGUKZgHLb4YP39/view" target="_blank" rel="noopener" data-key="cert_btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+            To'liq ko'rish
+          </a>
+        </div>
+      </div>
+
+      <!-- 4: Ruxsatnoma 2 -->
+      <div class="cert-card">
+        <div class="cert-img-wrap">
+          <img src="https://lh3.googleusercontent.com/d/1PYODtKTOTRpdP-672J5rxUGXAhlN76tF"
+               alt="Ruxsatnoma 2"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="cert-err">📄 Rasm yuklanmadi</div>
+        </div>
+        <div class="cert-body">
+          <h4 data-key="cert4_name">Ruxsatnoma 2</h4>
+          <span data-key="cert4_sub">Maxsus ishlar uchun ruxsat</span><br>
+          <a class="cert-btn" href="https://drive.google.com/file/d/1PYODtKTOTRpdP-672J5rxUGXAhlN76tF/view" target="_blank" rel="noopener" data-key="cert_btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+            To'liq ko'rish
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-sec" id="gallery">
+  <div class="container">
+    <h2 class="sec-title" data-key="g_title">Ish jarayonidan lavhalar</h2>
+    <div class="sec-line"></div>
+
+    <!-- 1: Maxsus texnika -->
+    <div class="gallery-block">
+      <div class="gallery-subtitle" data-key="g3_title">Maxsus texnika va transportlar</div>
+      <div class="photo-grid" id="grid3"></div>
+    </div>
+
+    <!-- 2: Gorizontal burg'ulash -->
+    <div class="gallery-block">
+      <div class="gallery-subtitle" data-key="g1_title">Gorizontal burg'ulash ishlari</div>
+      <div class="photo-grid" id="grid1">
+        <!-- photos injected by JS -->
+      </div>
+    </div>
+
+    <!-- 3: Magistral gaz quvurlari -->
+    <div class="gallery-block">
+      <div class="gallery-subtitle" data-key="g2_title">Magistral gaz quvurlarini kapital ta'mirlash</div>
+      <div class="photo-grid" id="grid2"></div>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="gallery-block">
+      <div class="gallery-subtitle" data-key="g4_title">Video lavhalar</div>
+      <div class="video-grid" id="videoGrid"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb">
+  <button class="lb-close" id="lbClose">&#x2715;</button>
+  <button class="lb-prev"  id="lbPrev">&#8249;</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <button class="lb-next"  id="lbNext">&#8250;</button>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <h2 class="sec-title" data-key="k_title">Aloqa</h2>
+    <div class="sec-line"></div>
+    <div class="contact-grid">
+      <div class="c-items">
+        <div class="c-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+          <div>
+            <h4 data-key="k_tel">Telefon raqamlar</h4>
+            <a href="tel:+998915717707">+998 91 571 77 07</a>
+            <a href="tel:+998884525050">+998 88 452 50 50</a>
+            <a href="tel:+998937172012">+998 93 717 20 12</a>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          <div>
+            <h4 data-key="k_email">E-mail</h4>
+            <a href="mailto:ooogasglobal@mail.ru">ooogasglobal@mail.ru</a>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <div>
+            <h4 data-key="k_addr">Manzil</h4>
+            <p data-key="k_addr_val">Xorazm viloyati, Urganch tumani, Oyoqbog' MFY</p>
+          </div>
+        </div>
+      </div>
+      <div class="social-box">
+        <h3 data-key="soc_title">Ijtimoiy tarmoqlar</h3>
+        <div class="soc-links">
+          <a class="soc-link" href="https://www.instagram.com/globalsuvgazservis?igsh=eWFyc2Riam0xN292&utm_source=qr" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram <span class="soc-hint">@globalsuvgazservis →</span>
+          </a>
+          <a class="soc-link" href="https://www.facebook.com/share/18XbrPt3ou/?mibextid=wwXIfr" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook <span class="soc-hint">Global Suv Gaz Servis →</span>
+          </a>
+          <a class="soc-link" href="https://t.me/globalsuvgaz" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Telegram <span class="soc-hint">@globalsuvgaz →</span>
+          </a>
+          <a class="soc-link" href="mailto:ooogasglobal@mail.ru">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            E-mail <span class="soc-hint">ooogasglobal@mail.ru →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <strong>OOO "Global Suv Gaz Servis"</strong> — Xorazm vil., Urganch tumani, Oyoqbog' MFY</p>
+</footer>
+
+<script>
+// ── DATA ──
+var PHOTOS = {
+  grid1: [
+    '1gtDI5eUCDCZkWr8EzrSbsJOOcTatAace',
+    '1W0BlNiLMbLCJ2WMsp9AgXAQxw8vSFQUr',
+    '1NaQX2RQAtl6TxGdj3Ct62h-aoo0UXxlJ',
+    '1AnZBcGY_hMzb0Mg4GUi1p2s5rrcepIdE',
+    '1_CAWMZt19Hdqv1x5_w9ClRan34I5MM2I',
+    '1NQcNEhNXpcq-lgQ2AXGMZ4kfwbvTK8mk',
+    '1Zf7mNtqwDtfY_mZcBX9JybbbMu4RJAdp',
+    '1ZOpw48XJUm4VFuuvUTiVOdFUFWb0Um5X'
+  ],
+  grid2: [
+    '1200kJXTfapMGLDDNHKoPZZN0RKgLcsm3',
+    '14b_j0y-GrpF2heF3hyN9IqGcylleoYgo',
+    '1ukFf5YKFU93BSguZppQjOVA_oFkJ0I67',
+    '1DHHPdIfHbPfT7wS6ma9k9v-rJPHuTNLA',
+    '1VS2ZuwVd1kNBCh5SXGdrX3Wv9uIHydi-',
+    '1fyjh0Mfm8ojRJ7Oykljs1cIIcQa8fu4Z'
+  ],
+  grid3: [
+    '1L-b7dtN9CyUlR1eLpN496cxo1s3MSOrg',
+    '1oFocq7VegHVqstFafykMpj_vtwS6n7I7',
+    '1ROoVDqlSurxfoTOjaZIAJMiRXufbDWQ0',
+    '1AcC9ZKbm_fh90iuZ28h2gsBJ5K2O3rK6',
+    '1ayDRp3iLcOWptaBXpKtGfshT9lfcZMUQ',
+    '1v6u1KaJs9kVGFutN3W3riNkfu4MlgQ2V',
+    '1RbWQmOOag1bEPuSNm1sLe4TNMyXoLvGN',
+    '14RIepddMVyNJj1mFJhP2NmDiVk_Zr5GN',
+    '1tK9Y4FobEpGMLwxpmZnVUx-b-7VUYByj',
+    '1KaHFSN7RJhZOw8eY1AY1c9NSIbjRk6wB',
+    '1077xBfiKabhOx6qridsnDlgNlTwF63Tv',
+    '1r8OF9FCEPO6jdvU2O8X67V1wT2MlCoKf',
+    '1b2v03YIbk64SCVyUH2C4OUw_FjDHEBy6',
+    '13JwanCxDajtm6KsgmtKnH2IGkKPevCff'
+  ]
+};
+
+var VIDEOS = [
+  '130p8THsTP4FVdDy2BnInTeE4augCecgg',
+  '1DHabGts3--7_IQfD8VzgCiiRkM6Q-ivR',
+  '1jeGJuFe32BqYYEz7Nzhqrh0vT9wmOWlF',
+  '16vviJQT8bBGuNPgwep7DMo_RRjnFENyB'
+];
+
+function gdImg(id){ return 'https://lh3.googleusercontent.com/d/'+id; }
+function gdUrl(id){ return 'https://drive.google.com/file/d/'+id+'/view'; }
+
+// Build photo grids
+var allPhotos = [];   // flat list for lightbox, per grid
+var gridMeta = {};    // gridId -> {start, end}
+
+['grid1','grid2','grid3'].forEach(function(gid){
+  var el = document.getElementById(gid);
+  var ids = PHOTOS[gid];
+  var start = allPhotos.length;
+  ids.forEach(function(id, i){
+    allPhotos.push(id);
+    var idx = allPhotos.length - 1;
+    var div = document.createElement('div');
+    div.className = 'photo-item';
+    div.setAttribute('data-idx', idx);
+    div.innerHTML = '<img src="'+gdImg(id)+'" alt="Rasm '+(i+1)+'" loading="lazy" onerror="this.parentNode.style.background=\'#cbd8f0\'">'
+                  + '<div class="ph-overlay"></div>';
+    div.addEventListener('click', function(){ openLB(parseInt(this.getAttribute('data-idx'))); });
+    el.appendChild(div);
+  });
+  gridMeta[gid] = {start:start, end:allPhotos.length-1};
+});
+
+// Build video grid
+var vg = document.getElementById('videoGrid');
+VIDEOS.forEach(function(id){
+  var div = document.createElement('div');
+  div.className = 'video-item';
+  div.innerHTML = '<a href="'+gdUrl(id)+'" target="_blank" rel="noopener">'
+    +'<img src="'+gdImg(id)+'" alt="Video" loading="lazy" onerror="this.style.opacity=\'0\'">'
+    +'<div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>'
+    +'<span class="video-open-link">▶ Google Drive da ochish</span>'
+    +'</a>';
+  vg.appendChild(div);
+});
+
+// Lightbox
+var lb=document.getElementById('lb');
+var lbImg=document.getElementById('lbImg');
+var curIdx=0;
+function openLB(idx){ curIdx=idx; lbImg.src=gdImg(allPhotos[idx]); lb.classList.add('open'); }
+function closeLB(){ lb.classList.remove('open'); lbImg.src=''; }
+function prevLB(){ curIdx=(curIdx-1+allPhotos.length)%allPhotos.length; lbImg.src=gdImg(allPhotos[curIdx]); }
+function nextLB(){ curIdx=(curIdx+1)%allPhotos.length; lbImg.src=gdImg(allPhotos[curIdx]); }
+document.getElementById('lbClose').addEventListener('click',closeLB);
+document.getElementById('lbPrev').addEventListener('click',prevLB);
+document.getElementById('lbNext').addEventListener('click',nextLB);
+lb.addEventListener('click',function(e){ if(e.target===lb) closeLB(); });
+document.addEventListener('keydown',function(e){ if(!lb.classList.contains('open')) return; if(e.key==='ArrowLeft') prevLB(); else if(e.key==='ArrowRight') nextLB(); else if(e.key==='Escape') closeLB(); });
+
+// ── TRANSLATIONS ──
+var T={
+  uz:{nav_s:"Xizmatlar",nav_c:"Sertifikatlar",nav_g:"Galereya",nav_k:"Aloqa",badge:"OOO • Rasmiy tashkilot",sub:"Professionallar jamoasi",s_title:"Bizning Xizmatlar",s1h:"Gorizontal burg'ulash",s1p:"Yer osti kommunikatsiyalarini yo'l va inshootlarni buzmasdan o'tkazish uchun zamonaviy gorizontal yo'nalishli burg'ulash ishlari.",s2h:"Yer usti va yer osti gaz liniyalari",s2p:"Gaz tarmoqlarini loyihalash, montaj qilish va rekonstruksiya — to'liq xizmat.",s3h:"Suv ta'minot liniyalari montaji",s3p:"Yer usti va yer osti suv quvurlari tizimlarini yangi o'rnatish hamda rekonstruksiya qilish.",s4h:"Rekonstruksiya va ta'mirlash",s4p:"Gaz va suv tarmoqlarini zamonaviy standartlarga muvofiq rekonstruksiya, modernizatsiya va kapital ta'mirlash.",c_title:"Guvohnoma, Sertifikat & Litsenziyalar",cert1_name:"Guvohnoma",cert1_sub:"Davlat ro'yxatidan o'tish",cert2_name:"Litsenziya",cert2_sub:"Gaz va suv tarmoqlari qurilishi",cert3_name:"Ruxsatnoma",cert3_sub:"Maxsus ishlar uchun ruxsat",cert4_name:"Ruxsatnoma 2",cert4_sub:"Maxsus ishlar uchun ruxsat",cert_btn:"To'liq ko'rish",g_title:"Ish jarayonidan lavhalar",g1_title:"Gorizontal burg'ulash ishlari",g2_title:"Magistral gaz quvurlarini kapital ta'mirlash",g3_title:"Maxsus texnika va transportlar",g4_title:"Video lavhalar",k_title:"Aloqa",k_tel:"Telefon raqamlar",k_email:"E-mail",k_addr:"Manzil",k_addr_val:"Xorazm viloyati, Urganch tumani, Oyoqbog' MFY",soc_title:"Ijtimoiy tarmoqlar"},
+  ru:{nav_s:"Услуги",nav_c:"Сертификаты",nav_g:"Галерея",nav_k:"Контакты",badge:"ООО • Официальная организация",sub:"Команда профессионалов",s_title:"Наши Услуги",s1h:"Горизонтальное бурение",s1p:"Современное горизонтально-направленное бурение для прокладки подземных коммуникаций без разрушения дорог.",s2h:"Надземные и подземные газопроводы",s2p:"Проектирование, монтаж и реконструкция газовых сетей — полный спектр услуг.",s3h:"Монтаж водопроводных линий",s3p:"Новая прокладка и реконструкция надземных и подземных систем водоснабжения.",s4h:"Реконструкция и ремонт",s4p:"Реконструкция газовых и водопроводных сетей, модернизация и капитальный ремонт.",c_title:"Свидетельство, Сертификат & Лицензии",cert1_name:"Свидетельство",cert1_sub:"Государственная регистрация",cert2_name:"Лицензия",cert2_sub:"Строительство газовых и водопроводных сетей",cert3_name:"Разрешение",cert3_sub:"Допуск к специальным работам",cert4_name:"Разрешение 2",cert4_sub:"Допуск к специальным работам",cert_btn:"Открыть полностью",g_title:"Фотографии с места работ",g1_title:"Горизонтальное бурение",g2_title:"Капитальный ремонт магистральных газопроводов",g3_title:"Спецтехника и транспорт",g4_title:"Видеозаписи",k_title:"Контакты",k_tel:"Телефоны",k_email:"E-mail",k_addr:"Адрес",k_addr_val:"Хоразмская обл., Ургенчский р-н, МФЙ Оёқбоғ",soc_title:"Социальные сети"},
+  en:{nav_s:"Services",nav_c:"Certificates",nav_g:"Gallery",nav_k:"Contact",badge:"LLC • Official Organization",sub:"Team of Professionals",s_title:"Our Services",s1h:"Horizontal Drilling",s1p:"Modern horizontal directional drilling for underground infrastructure without disrupting roads and existing structures.",s2h:"Above & Underground Gas Pipelines",s2p:"Design, installation and reconstruction of gas networks — full service for above and underground pipelines.",s3h:"Water Supply Line Installation",s3p:"New installation and reconstruction of above-ground and underground water supply systems.",s4h:"Reconstruction & Repair",s4p:"Reconstruction of gas and water networks to modern standards, modernization and capital repair works.",c_title:"Certificate & Licenses",cert1_name:"Registration Certificate",cert1_sub:"State registration",cert2_name:"License",cert2_sub:"Gas & water network construction",cert3_name:"Permit",cert3_sub:"Special works permit",cert4_name:"Permit 2",cert4_sub:"Special works permit",cert_btn:"Open Full View",g_title:"Work Process Photos",g1_title:"Horizontal Drilling Works",g2_title:"Main Gas Pipeline Capital Repair",g3_title:"Special Machinery & Vehicles",g4_title:"Video Footage",k_title:"Contact",k_tel:"Phone Numbers",k_email:"E-mail",k_addr:"Address",k_addr_val:"Khorezm region, Urgench district, Oyoqbog' MFY",soc_title:"Social Media"}
+};
+
+function applyLang(l){
+  var t=T[l];
+  document.querySelectorAll('[data-key]').forEach(function(el){
+    var k=el.getAttribute('data-key');
+    if(t[k]!==undefined) el.textContent=t[k];
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.getAttribute('data-lc')===l);
+  });
+  document.documentElement.lang=l;
+}
+
+(function(){
+  var hbg=document.getElementById('hbg');
+  var mob=document.getElementById('mob');
+  var lastT=0;
+  hbg.addEventListener('touchend',function(e){e.preventDefault();mob.classList.toggle('open');lastT=Date.now();},{passive:false});
+  hbg.addEventListener('click',function(){if(Date.now()-lastT>300)mob.classList.toggle('open');});
+  document.querySelectorAll('.mnl').forEach(function(a){
+    a.addEventListener('click',function(){mob.classList.remove('open');});
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    var t0=0;
+    btn.addEventListener('touchstart',function(){t0=Date.now();},{passive:true});
+    btn.addEventListener('touchend',function(e){e.preventDefault();if(Date.now()-t0<500){var lc=btn.getAttribute('data-lc');if(lc)applyLang(lc);}},{passive:false});
+    btn.addEventListener('click',function(){var lc=btn.getAttribute('data-lc');if(lc)applyLang(lc);});
+  });
+  applyLang('uz');
+})();
+</script>
+</body>
+</html>
